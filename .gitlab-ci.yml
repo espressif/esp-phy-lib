@@ -15,6 +15,8 @@ check_lib_reversion:
     - tar -zxvf riscv32-esp-elf-gcc8_4_0-esp-2021r2-patch3-linux-amd64.tar.gz -C ./riscv32 >/dev/null 2>&1
     - for dir in esp32c2 esp32c3 esp32c6; do test $(riscv32/riscv32-esp-elf/bin/riscv32-esp-elf-nm $dir/*.a | grep -w printf | wc -l) -eq 0; done;
     - for dir in esp32c2 esp32c3 esp32c6; do test $(riscv32/riscv32-esp-elf/bin/riscv32-esp-elf-nm $dir/*.a | grep -w ets_printf | wc -l) -eq 0; done;
+    - test $(riscv32/riscv32-esp-elf/bin/riscv32-esp-elf-nm esp32h2/*.a | grep -w printf | wc -l) -eq 0;
+    - test $(riscv32/riscv32-esp-elf/bin/riscv32-esp-elf-nm esp32h2/*.a | grep -w ets_printf | wc -l) -eq 0;
     - test $(riscv32/riscv32-esp-elf/bin/riscv32-esp-elf-nm esp32h2/rev1/*.a | grep -w printf | wc -l) -eq 0;
     - test $(riscv32/riscv32-esp-elf/bin/riscv32-esp-elf-nm esp32h2/rev1/*.a | grep -w ets_printf | wc -l) -eq 0;
     - test $(riscv32/riscv32-esp-elf/bin/riscv32-esp-elf-nm esp32h2/rev2/*.a | grep -w printf | wc -l) -eq 0;
