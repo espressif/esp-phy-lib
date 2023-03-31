@@ -1,5 +1,5 @@
 #!/bin/bash
-for dir in esp32 esp32s2 esp32c3 esp32s3 esp32h2 esp32c2 esp32c6; do
+for dir in esp32 esp32s2 esp32c3 esp32s3 esp32h2 esp32h4 esp32c2 esp32c6; do
     if [ $dir = esp32 ]; then
         TOOLCHAIN="xtensa-esp32-elf"
     elif [ $dir = esp32s2 ]; then
@@ -18,7 +18,7 @@ for dir in esp32 esp32s2 esp32c3 esp32s3 esp32h2 esp32c2 esp32c6; do
                 echo $dir/librtc.a fixed
                 $TOOLCHAIN-objcopy --redefine-sym ets_printf=rtc_printf librtc.a
             fi
-        elif [ $dir = esp32h2 ]; then
+        elif [ $dir = esp32h4 ]; then
             for subdir in rev1 rev2 ; do
                 cd $subdir
                 git status libbtbb.a | grep "modified\|new file" >/dev/null 2>&1
