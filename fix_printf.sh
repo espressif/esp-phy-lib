@@ -40,7 +40,7 @@ for dir in esp32 esp32s2 esp32c3 esp32s3 esp32h2 esp32h4 esp32c2 esp32c6; do
                 $TOOLCHAIN-objcopy --redefine-sym ets_printf=rtc_printf libbtbb.a
             fi
         fi
-        if [ $dir != esp32h2 ]; then
+        if [ 1 ]; then
             git status libphy.a | grep "modified\|new file" >/dev/null 2>&1
             if [ $? -eq 0 ]; then
                 echo $dir/libphy.a fixed
