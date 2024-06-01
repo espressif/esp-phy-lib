@@ -45,7 +45,7 @@ for dir in esp32 esp32s2 esp32c3 esp32s3 esp32h2 esp32h4 esp32c2 esp32c6 esp32c5
             echo $dir/libphy.a fixed
             $TOOLCHAIN-objcopy --redefine-sym ets_printf=phy_printf libphy.a
         fi
-        if [ $dir = esp32c3 ] || [ $dir = esp32s3 ] || [ $dir = esp32c2 ] || [ $dir = esp32c6 ] || [ $dir = esp32c5 ] || [ $dir = esp32s2 ] || [ $dir = esp32h2 ]; then
+        if [ $dir = esp32c3 ] || [ $dir = esp32s3 ] || [ $dir = esp32c2 ] || [ $dir = esp32c6 ] || [ $dir = esp32c5 ] || [ $dir = esp32s2 ] || [ $dir = esp32h2 ] || [ $dir = esp32 ]; then
             if [ $dir != esp32s2 ]; then
             	git status libbttestmode.a | grep "modified\|new file" >/dev/null 2>&1
             	if [ $? -eq 0 ]; then
@@ -53,10 +53,12 @@ for dir in esp32 esp32s2 esp32c3 esp32s3 esp32h2 esp32h4 esp32c2 esp32c6 esp32c5
                 	$TOOLCHAIN-objcopy --redefine-sym ets_printf=phy_printf libbttestmode.a
             	fi
             fi
-            git status librfate.a | grep "modified\|new file" >/dev/null 2>&1
-            if [ $? -eq 0 ]; then
-                echo $dir/librfate.a fixed
-                $TOOLCHAIN-objcopy --redefine-sym ets_printf=phy_printf librfate.a
+            if [ $dir != esp32 ]; then
+            	git status librfate.a | grep "modified\|new file" >/dev/null 2>&1
+            	if [ $? -eq 0 ]; then
+                	echo $dir/librfate.a fixed
+                	$TOOLCHAIN-objcopy --redefine-sym ets_printf=phy_printf librfate.a
+            	fi
             fi
             git status librftest.a | grep "modified\|new file" >/dev/null 2>&1
             if [ $? -eq 0 ]; then
